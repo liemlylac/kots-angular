@@ -1,1 +1,37 @@
-<p>register works!</p>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Create a new account</mat-card-title>
+    </mat-card-header>
+    <form class="login-form" [formGroup]="formData" (ngSubmit)="onClickSubmit(formData.value)">
+      <mat-card-content>
+        <mat-list>
+          <mat-list-item>
+            <mat-form-field class="input-full-width">
+              <input matInput placeholder="Display Name" name="displayName" formControlName="displayName">
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-form-field class="input-full-width">
+              <input matInput placeholder="Username" name="username" formControlName="username">
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-form-field class="input-full-width">
+              <input matInput placeholder="Password" type="password" name="password" formControlName="password">
+            </mat-form-field>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-checkbox>I accept terms and conditions</mat-checkbox>
+          </mat-list-item>
+          <mat-list-item>
+            <button mat-flat-button type="submit" color="primary" class="btn-block">Create a new account</button>
+          </mat-list-item>
+          <mat-list-item>
+            <button mat-flat-button [routerLink]="['/login']" type="submit" color="accent" class="btn-block">Return to login page</button>
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

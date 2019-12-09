@@ -3,13 +3,15 @@ import { CommonModule } from '@angular/common';
 import {
   MatButtonModule, MatInputModule, MatTableModule, MatToolbarModule, MatIconModule, MatSidenavModule, MatBadgeModule, MatListModule,
   MatGridListModule, MatPaginatorModule, MatFormFieldModule, MatSelectModule, MatRadioModule, MatDatepickerModule, MatChipsModule,
-  MatTooltipModule
+  MatTooltipModule, MatCardModule
 } from '@angular/material';
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 @NgModule({
   imports: [
     CommonModule,
     MatButtonModule,
+    MatCardModule,
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
@@ -24,10 +26,12 @@ import {
     MatChipsModule,
     MatTooltipModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCheckboxModule
   ],
   exports: [
     MatButtonModule,
+    MatCardModule,
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
@@ -42,7 +46,8 @@ import {
     MatChipsModule,
     MatTooltipModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatCheckboxModule
   ],
   providers: [
     MatDatepickerModule,

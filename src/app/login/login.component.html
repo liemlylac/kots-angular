@@ -1,0 +1,28 @@
+<h2>Login</h2>
+<form [formGroup]="formData" (ngSubmit)="onClickSubmit(formData.value)">
+  <input matInput placeholder="Username" name="username" formControlName="username"/>
+  <input matInput placeholder="Password" type="password" name="password" formControlName="password"/>
+  <button mat-button [disabled]="!formData.valid" type="submit">Login</button>
+</form>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form">
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password">
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+    </form>
+  </mat-card>
+
+</div>

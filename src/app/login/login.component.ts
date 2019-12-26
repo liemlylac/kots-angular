@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { AuthenticationService } from "../_services/authentication.service";
-import { User } from "../_models/user";
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +14,7 @@ export class LoginComponent implements OnInit {
   private submitted = false;
   private returnUrl: string;
   private error = '';
+
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -34,27 +34,27 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', this.passwordValidation)
     });
 
-    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.activatedRoute.snapshot.queryParams.returnUrl || '/';
   }
 
   passwordValidation(formControl) {
-    if (formControl.value.length < 5) {
+    if (formControl.value.length < 3) {
       return {password: true};
     }
   }
 
-  onSubmit(value: any) {
+  onSubmit() {
     this.submitted = true;
     if (this.formData.invalid) {
       return;
     }
     this.loading = true;
-    this.authenticationService.login(this.formData.username.value, this.formData.password.value)
-      .subscribe((data: User) => {
+    this.authenticationService.login(this.formData.controls.username.value, this.formData.controls.password.value)
+      .subscribe(() => {
         this.router.navigate([this.returnUrl]);
       }, error => {
         this.error = error;
         this.loading = false;
-      })
+      });
   }
 }

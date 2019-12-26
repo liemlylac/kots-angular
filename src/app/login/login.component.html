@@ -3,40 +3,22 @@
     <mat-card-header>
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
-    <form class="login-form" [formGroup]="formData" (ngSubmit)="onSubmit(formData.value)">
+    <form class="login-form" [formGroup]="formData" (ngSubmit)="onSubmit()">
       <mat-card-content>
-        <div class="alert alert-info">
-          Username: test<br />
-          Password: test
-        </div>
         <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
         <mat-list>
           <mat-list-item>
             <mat-form-field class="input-full-width">
-              <input matInput placeholder="Username" name="username" formControlName="username">
-              <div *ngIf="submitted && formData.username.errors" class="invalid-feedback">
-                <div *ngIf="formData.username.errors.required">Username is required</div>
-              </div>
-            </mat-form-field>
-
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Email" [formControl]="formData.username"
-                     [errorStateMatcher]="matcher">
-              <mat-hint>Errors appear instantly!</mat-hint>
-              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Please enter a valid email address
-              </mat-error>
-              <mat-error *ngIf="emailFormControl.hasError('required')">
-                Email is <strong>required</strong>
-              </mat-error>
+              <label>
+                <input matInput placeholder="Username" name="username" formControlName="username">
+              </label>
             </mat-form-field>
           </mat-list-item>
           <mat-list-item>
             <mat-form-field class="input-full-width">
-              <input matInput placeholder="Password" type="password" name="password" formControlName="password">
-              <div *ngIf="submitted && formData.password.errors" class="invalid-feedback">
-                <div *ngIf="formData.password.errors.required">Password is required</div>
-              </div>
+              <label>
+                <input matInput placeholder="Password" type="password" name="password" formControlName="password">
+              </label>
             </mat-form-field>
           </mat-list-item>
           <mat-list-item>

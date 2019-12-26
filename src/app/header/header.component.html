@@ -5,8 +5,16 @@
   <a mat-button routerLink="/issues">Issues</a>
   <a mat-button routerLink="/users">Users</a>
   <a mat-button routerLink="/about">About</a>
-  <span class="nav-tool-items">
-    <a mat-button routerLink="/login" routerLinkActive="active">Log in</a>
-    <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
-  </span>
+  <div class="nav-tool-items">
+    <div class="navbar navbar-expand navbar-dark bg-dark" *ngIf="!currentUser">
+      <a mat-button routerLink="/login" routerLinkActive="active">Log in</a>
+      <a mat-button mat-raised-button routerLink="register">Register</a>
+    </div>
+    <div class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
+        <div class="navbar-nav">
+            <span class="">{{currentUser.displayName}}</span>
+            <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        </div>
+    </div>
+  </div>
 </mat-toolbar>

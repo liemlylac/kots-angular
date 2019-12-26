@@ -1,10 +1,9 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
-import { map } from "rxjs/operators";
-
-import { User } from "../_models/user";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "../../environments/environment";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { User } from '../_models/user';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class AuthenticationService {
@@ -23,16 +22,16 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.httpClient.post(`${environment.apiUrl}/user/login`, {username, password})
+    return this.httpClient.post(`${environment.apiUrl}/auth/login`, {username, password})
       .pipe(map((user: User) => {
           localStorage.setItem('currentUser', JSON.stringify(user));
           this.currentUserSubject.next(user);
           return user;
         })
-      )
+      );
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }

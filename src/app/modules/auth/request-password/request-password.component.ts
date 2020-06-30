@@ -1,7 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TitleService } from '@theme/services/title.service';
 
 @Component({
   selector: 'app-request-password',
-  template: `request password page is loaded`
+  templateUrl: 'request-password.component.html'
 })
-export class RequestPasswordComponent {}
+export class RequestPasswordComponent implements OnInit {
+  constructor(
+    private readonly titleService: TitleService,
+  ) {
+    this.titleService.setTitle('Request password');
+  }
+
+  ngOnInit(): void {
+  }
+}

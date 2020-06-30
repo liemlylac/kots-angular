@@ -1,0 +1,42 @@
+<div class="auth-form">
+  <h1>Login</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <div><a routerLink="/auth/request-password">Forgot your password?</a></div>
+    <div class="form-control">
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username" required>
+      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+        <div *ngIf="username.errors.required">
+          Username is required
+        </div>
+        <div *ngIf="username.errors.minlength">
+          Username must be at least 6 characters long.
+        </div>
+        <div *ngIf="username.errors.maxlength">
+          Username must be at most 20 characters long.
+        </div>
+      </div>
+    </div>
+    <div class="form-control">
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" required>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        <div *ngIf="password.errors.required">
+          Password is required
+        </div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 6 characters long.
+        </div>
+        <div *ngIf="password.errors.maxlength">
+          Password must be at most 30 characters long.
+        </div>
+      </div>
+    </div>
+    <div class="form-control">
+      <button class="btn-primary" type="submit" [disabled]="submitted">Login</button>
+    </div>
+    <div class="form-control">
+      <button class="btn-secondary" routerLink="/auth/register">Register</button>
+    </div>
+  </form>
+</div>

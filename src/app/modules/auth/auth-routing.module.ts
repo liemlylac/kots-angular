@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from './auth.component';
-import { NotFoundComponent } from '../error/not-found/not-found.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { RequestPasswordComponent } from './request-password/request-password.component';
@@ -32,11 +31,7 @@ const routes: Routes = [
         path: '',
         redirectTo: 'login',
         pathMatch: 'full',
-      },
-      {
-        path: '**',
-        component: NotFoundComponent,
-      },
+      }
     ]
   }
 ];

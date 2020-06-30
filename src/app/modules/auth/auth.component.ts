@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-auth',
-  template: `<router-outlet></router-outlet>`
+  template: `
+  <app-one-column>
+    <router-outlet></router-outlet>
+  </app-one-column>`
 })
 export class AuthComponent {
 }

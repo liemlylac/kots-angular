@@ -8,8 +8,8 @@ import { FooterComponent } from './components/footer.component';
 import { MenuComponent } from './components/menu.component';
 import { TitleService } from './services/title.service';
 import { SidebarComponent } from './components/sidebar.component';
-import { OneColumnComponent } from './one-column/one-column.component';
-import { TwoColumnComponent } from './two-column/two-column.component';
+import { OneColumnComponent } from './layout/one-column/one-column.component';
+import { TwoColumnComponent } from './layout/two-column/two-column.component';
 
 @NgModule({
   imports: [CommonModule],

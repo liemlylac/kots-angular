@@ -7,9 +7,6 @@ import { Component } from '@angular/core';
     <app-layout-header>
       <app-header></app-header>
     </app-layout-header>
-    <app-sidebar>
-        <ng-content select="app-menu"></ng-content>
-    </app-sidebar>
     <ng-content></ng-content>
     <app-layout-footer>
       <app-footer></app-footer>

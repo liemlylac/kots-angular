@@ -4,6 +4,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpService } from '@modules/common/service/http.service';
 import { LoginModel, LoginResult } from '../model/login.model';
 import { TokenLocalStorage } from './token-storage';
+import { RegisterModel, RegisterResult } from '@modules/auth/model/register.model';
 
 @Injectable()
 export class AuthService {
@@ -15,10 +16,27 @@ export class AuthService {
   }
 
   public static LOGIN_ENDPOINT = '/auth/login';
+  public static REGISTER_ENDPOINT = '/auth/register';
 
-  authenticate(loginForm: LoginModel): Observable<any> {
-    return this.httpService.post(AuthService.LOGIN_ENDPOINT, loginForm).pipe(
+  authenticate(data: LoginModel): Observable<any> {
+    return this.httpService.post(AuthService.LOGIN_ENDPOINT, data).pipe(
       map((res: LoginResult) => {
+          // Save token to localStorage
+          if (res && res.token) {
+            this.tokenService.set(res.token);
+          }
+          return of(true);
+        }
+      ),
+      catchError(() => {
+        return of(false);
+      })
+    );
+  }
+
+  register(data: RegisterModel): Observable<any> {
+    return this.httpService.post(AuthService.REGISTER_ENDPOINT, data).pipe(
+      map((res: RegisterResult) => {
           // Save token to localStorage
           if (res && res.token) {
             this.tokenService.set(res.token);

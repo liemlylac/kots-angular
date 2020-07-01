@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-layout-footer',
   template: `
-  <nav class="layout-footer">
+  <footer class="layout-footer footer">
     <ng-content></ng-content>
-  </nav>
+  </footer>
   `,
 })
 export class LayoutFooterComponent {

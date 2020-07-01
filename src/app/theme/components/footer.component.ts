@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
-  template: `<div>App footer</div>`,
+  templateUrl: './footer.component.html',
 })
 export class FooterComponent {
+  copyRightYear = new Date();
 }

@@ -11,7 +11,6 @@ import { TitleService } from '@theme/services/title.service';
 })
 export class LoginComponent implements OnInit {
 
-
   loginForm: FormGroup;
 
   submitted = false;
@@ -26,11 +25,10 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]]
     });
-    this.titleService.setTitle('Login');
   }
 
   ngOnInit(): void {
-
+    this.titleService.setTitle('Login');
   }
 
   get username(): AbstractControl {
@@ -41,12 +39,12 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  onSubmit(login: LoginModel): void {
+  onSubmit(data: LoginModel): void {
     if (!this.loginForm.valid) {
       return;
     }
     this.submitted = true;
-    this.authService.authenticate(login).subscribe(
+    this.authService.authenticate(data).subscribe(
       (result: boolean) => {
         this.submitted = false;
 

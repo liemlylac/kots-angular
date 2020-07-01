@@ -1,24 +1,68 @@
-<div class="auth-form">
-  <h1>Register</h1>
-  <form>
-    <div><a routerLink="/auth/request-password">Forgot your password?</a></div>
-    <div class="form-control">
-      <label for="fullName">Full name</label>
-      <input type="text" id="fullName">
+<div class="container px-3 pb-5">
+  <h1 class="text-center">Create account</h1>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
+    <div class="text-right">
+      <a routerLink="/auth/request-password">Forgot your password?</a>
     </div>
-    <div class="form-control">
+    <div class="form-group">
+      <label for="fullname">Display name</label>
+      <input type="text" id="fullname" formControlName="displayName" required
+             class="form-control" [class.is-invalid]="displayName.invalid"/>
+      <div *ngIf="displayName.invalid && (displayName.dirty || displayName.touched)" class="bg-gradient-danger text-danger">
+        <div *ngIf="displayName.errors.required">
+          Display name is required
+        </div>
+        <div *ngIf="displayName.errors.minlength">
+          Display name must be at least 6 characters long.
+        </div>
+        <div *ngIf="displayName.errors.maxlength">
+          Display name must be at most 50 characters long.
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" id="username">
+      <input type="text" id="username" formControlName="username" required
+             class="form-control" [class.is-invalid]="username.invalid"/>
+      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="bg-gradient-danger text-danger">
+        <div *ngIf="username.errors.required">
+          Username is required
+        </div>
+        <div *ngIf="username.errors.minlength">
+          Username must be at least 6 characters long.
+        </div>
+        <div *ngIf="username.errors.maxlength">
+          Username must be at most 20 characters long.
+        </div>
+      </div>
     </div>
-    <div class="form-control">
+
+    <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password">
+      <input type="password" id="password" formControlName="password" required
+             class="form-control" [class.is-invalid]="password.invalid"/>
+      <small class="form-text text-muted">
+        Password must be 6-30 characters long.
+      </small>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+        <div *ngIf="password.errors.required">
+          Password is required
+        </div>
+        <div *ngIf="password.errors.minlength">
+          Password must be at least 6 characters long.
+        </div>
+        <div *ngIf="password.errors.maxlength">
+          Password must be at most 30 characters long.
+        </div>
+      </div>
     </div>
-    <div class="form-control">
-      <button class="btn-primary">Register</button>
+
+    <div class="form-group">
+      <button class="btn btn-primary btn-block" type="submit" [disabled]="submitted">Create a new account</button>
     </div>
-    <div class="form-control">
-      <button class="btn-secondary" routerLink="/auth/login">Login</button>
+    <div class="form-group">
+      <button class="btn btn-secondary btn-block" routerLink="/auth/login">Login</button>
     </div>
   </form>
 </div>

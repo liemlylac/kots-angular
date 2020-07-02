@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoginModel } from '../../model/login.model';
 import { AuthService } from '../../services/auth.service';
-import { TitleService } from '@theme/services/title.service';
+import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +11,13 @@ import { TitleService } from '@theme/services/title.service';
 })
 export class LoginComponent implements OnInit {
 
+  errors: string[];
+
   loginForm: FormGroup;
 
   submitted = false;
 
   constructor(
-    private readonly titleService: TitleService,
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
@@ -28,34 +29,57 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Login');
+    // /this.titleService.setTitle('Login');
+  }
+
+  getFormControl(fieldName): AbstractControl {
+    return this.loginForm.get(fieldName);
   }
 
   get username(): AbstractControl {
-    return this.loginForm.get('username');
+    return this.getFormControl('username');
   }
 
   get password(): AbstractControl {
-    return this.loginForm.get('password');
+    return this.getFormControl('password');
+  }
+
+  isShowFieldDanger(fieldName): boolean {
+    const formControl =  this.getFormControl(fieldName);
+    return formControl.invalid && (formControl.dirty || formControl.touched);
   }
 
   onSubmit(data: LoginModel): void {
-    if (!this.loginForm.valid) {
+    this.errors = [];
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
       return;
     }
     this.submitted = true;
     this.authService.authenticate(data).subscribe(
       (result: boolean) => {
         this.submitted = false;
-
         if (result) {
-          this.router.navigate(['/dashboard']).then();
-          return;
+          return this.router.navigate(['/dashboard']);
+        }
+      },
+      (error: HttpExceptionFilterResult) => {
+        this.submitted = false;
+        let messages = error.message;
+
+        if (!Array.isArray(messages)) {
+          messages = [messages];
         }
 
+        messages.forEach(message => {
+          if (typeof message === 'string') {
+            this.errors.push(message);
+          }
+        });
+
         // Clear password field
-        this.loginForm.get('password').reset();
-      },
+        this.password.reset();
+      }
     );
   }
 }

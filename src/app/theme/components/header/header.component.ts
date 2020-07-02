@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services/auth.service';
+import { LoginLocalStorage } from '@modules/auth/services/login-storage';
+import { LoginUser } from '@modules/auth/model/login.model';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private readonly authService: AuthService,
-    private readonly router: Router
+    private readonly loginStorage: LoginLocalStorage
   ) {
   }
 
@@ -21,7 +22,9 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/auth/login']);
   }
 
+  get loginUser(): LoginUser {
+    return this.loginStorage.get();
+  }
 }

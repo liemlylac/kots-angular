@@ -9,7 +9,7 @@ import { AuthService } from './services/auth.service';
 import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TokenLocalStorage } from './services/token-storage';
+import { LoginLocalStorage } from './services/login-storage';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import { TokenLocalStorage } from './services/token-storage';
   ],
   providers: [
     AuthService,
-    TokenLocalStorage,
+    LoginLocalStorage,
   ]
 })
 export class AuthModule {

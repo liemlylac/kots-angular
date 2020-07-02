@@ -1,14 +1,15 @@
 <div class="container px-3 pb-5">
   <h1 class="text-center">Login</h1>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+    <div *ngFor="let error of errors" class="alert alert-danger">{{error}}</div>
     <div class="text-right">
       <a routerLink="/auth/request-password">Forgot your password?</a>
     </div>
     <div class="form-group">
       <label for="username">Username</label>
       <input type="text" id="username" formControlName="username" required
-             class="form-control" [class.is-invalid]="username.invalid"/>
-      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="bg-gradient-danger text-danger">
+             class="form-control" [class.is-invalid]="isShowFieldDanger('username')"/>
+      <div *ngIf="isShowFieldDanger('username')" class="bg-gradient-danger text-danger">
         <div *ngIf="username.errors.required">
           Username is required
         </div>
@@ -23,12 +24,12 @@
 
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" id="password" formControlName="password" required
-             class="form-control" [class.is-invalid]="password.invalid"/>
+      <input type="password" id="password" formControlName="password" required minlength="6" maxlength="30"
+             class="form-control" [class.is-invalid]="isShowFieldDanger('password')"/>
       <small class="form-text text-muted">
         Password must be 6-30 characters long.
       </small>
-      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+      <div *ngIf="isShowFieldDanger('password')" class="text-danger">
         <div *ngIf="password.errors.required">
           Password is required
         </div>

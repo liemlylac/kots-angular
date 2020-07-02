@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 import { HttpService } from '@modules/common/service/http.service';
-import { LoginModel, LoginResult } from '../model/login.model';
-import { TokenLocalStorage } from './token-storage';
 import { RegisterModel, RegisterResult } from '@modules/auth/model/register.model';
+import { LoginLocalStorage } from './login-storage';
+import { LoginModel, LoginResult } from '../model/login.model';
 
 @Injectable()
 export class AuthService {
 
   constructor(
-    private readonly tokenService: TokenLocalStorage,
-    private readonly httpService: HttpService
+    private readonly loginStorage: LoginLocalStorage,
+    private readonly httpService: HttpService,
+    private readonly router: Router
   ) {
   }
 
@@ -22,14 +25,14 @@ export class AuthService {
     return this.httpService.post(AuthService.LOGIN_ENDPOINT, data).pipe(
       map((res: LoginResult) => {
           // Save token to localStorage
-          if (res && res.token) {
-            this.tokenService.set(res.token);
+          if (res && res.isSuccess && res.loginUser) {
+            this.loginStorage.set(res.loginUser);
           }
-          return of(true);
+          return res.isSuccess;
         }
       ),
-      catchError(() => {
-        return of(false);
+      catchError((httpError: HttpErrorResponse) => {
+        return throwError(httpError.error);
       })
     );
   }
@@ -38,23 +41,24 @@ export class AuthService {
     return this.httpService.post(AuthService.REGISTER_ENDPOINT, data).pipe(
       map((res: RegisterResult) => {
           // Save token to localStorage
-          if (res && res.token) {
-            this.tokenService.set(res.token);
+          if (res && res.isSuccess && res.loginUser) {
+            this.loginStorage.set(res.loginUser);
           }
-          return of(true);
+          return res.isSuccess;
         }
       ),
-      catchError(() => {
-        return of(false);
+      catchError((httpError: HttpErrorResponse) => {
+        return throwError(httpError.error);
       })
     );
   }
 
   logout(): void {
-    this.tokenService.clear();
+    this.loginStorage.clear();
+    this.router.navigate(['/auth/login']);
   }
 
   isLoggedIn(): boolean {
-    return !!this.tokenService.get();
+    return !!this.loginStorage.get();
   }
 }

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@modules/common/common.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
 import { LayoutHeaderComponent } from './layout/layout-header.component';
 import { LayoutFooterComponent } from './layout/layout-footer.component';
@@ -12,7 +13,7 @@ import { OneColumnComponent } from './layout/one-column/one-column.component';
 import { TwoColumnComponent } from './layout/two-column/two-column.component';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [CommonModule, NgbModule],
   declarations: [
     LayoutComponent,
     LayoutHeaderComponent,

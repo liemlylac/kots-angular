@@ -1,5 +1,11 @@
 <div class="header">
-  <div class="text-right" *ngIf="isLoggedIn">
-    <button (click)="logout()">Logout</button>
+  <div ngbDropdown class="text-right" *ngIf="isLoggedIn">
+    <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>{{loginUser.fullName}}</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+      <a ngbDropdownItem routerLink="/user/account">Account</a>
+      <a ngbDropdownItem routerLink="/user/profile">Profile</a>
+      <a ngbDropdownItem routerLink="/user/security">Security</a>
+      <a ngbDropdownItem href="#" (click)="logout()">Logout</a>
+    </div>
   </div>
 </div>

@@ -13,6 +13,12 @@
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "vi": "src/assets/locales/translate.vi.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,6 +29,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "localize": ["vi"],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -61,6 +68,9 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "vi": {
+              "localize": ["vi"]
             }
           }
         },
@@ -72,6 +82,9 @@
           "configurations": {
             "production": {
               "browserTarget": "kots-angular:build:production"
+            },
+            "vi": {
+              "browserTarget": "kots-angular:build:vi"
             }
           }
         },

@@ -8,6 +8,8 @@ import { PageModule } from '@modules/page/page.module';
 import { ErrorModule } from '@modules/error/error.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TranslateModule} from '@ngx-translate/core';
+import { TranslateModuleConfig } from '@modules/common/config/translate.config';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    TranslateModule.forRoot(TranslateModuleConfig),
     AppRoutingModule,
     ThemeModule,
     AuthModule,
@@ -25,4 +28,5 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

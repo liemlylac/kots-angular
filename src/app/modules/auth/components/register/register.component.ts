@@ -29,7 +29,6 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.titleService.setTitle('Login');
   }
 
   get displayName(): AbstractControl {

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpService } from './service/http.service';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     AngularCommonModule,
     FormsModule,
     RouterModule,
+    TranslateModule,
   ],
   providers: [HttpService]
 })

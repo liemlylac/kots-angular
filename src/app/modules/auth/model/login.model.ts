@@ -23,26 +23,26 @@ export class LoginResult {
 export class LoginUser {
   private readonly displayName: string;
   private readonly username: string;
-  private readonly accessToken: string;
+  private readonly token: string;
 
   constructor(
     data: LoginUser
   ) {
     this.displayName = data.displayName;
     this.username = data.username;
-    this.accessToken = data.accessToken;
+    this.token = data.token;
   }
 
   toString(): string {
     return JSON.stringify(this);
   }
 
-  get fullName(): string {
+  getFullName(): string {
     return this.displayName;
   }
 
-  get token(): string {
-    return this.accessToken;
+  getAccessToken(): string {
+    return this.token;
   }
 
 

@@ -14,12 +14,12 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
-        data: { title: 'Login' }
+        data: { title: 'Auth.Login.Title' }
       },
       {
         path: 'register',
         component: RegisterComponent,
-        data: { title: 'Register' }
+        data: { title: 'Auth.Register.Title' }
       },
       {
         path: 'request-password',

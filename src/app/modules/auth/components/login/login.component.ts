@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
 import { LoginModel } from '../../model/login.model';
 import { AuthService } from '../../services/auth.service';
-import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
 
 @Component({
   selector: 'app-login',
@@ -22,14 +22,13 @@ export class LoginComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
   ) {
+  }
+
+  ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]]
     });
-  }
-
-  ngOnInit(): void {
-    // /this.titleService.setTitle('Login');
   }
 
   getFormControl(fieldName): AbstractControl {

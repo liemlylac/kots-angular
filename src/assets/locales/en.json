@@ -1,0 +1,27 @@
+{
+  "Auth": {
+    "General": {
+      "Full-name": "Full Name",
+      "Username": "Username",
+      "Password": "Password",
+      "Email": "Email",
+      "Forgot-your-password": "Forgot your password"
+    },
+    "Login": {
+      "Title": "Login",
+      "Button": "Login"
+    },
+    "Register": {
+      "Title": "Create a new account",
+      "Button": "Create a new account"
+    },
+    "Request-password": {
+      "Title": "Request password",
+      "Button": "Request password"
+    },
+    "Reset-password": {
+      "Title": "Reset password",
+      "Button": "Reset password"
+    }
+  }
+}

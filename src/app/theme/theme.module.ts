@@ -4,13 +4,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
 import { LayoutHeaderComponent } from './layout/layout-header.component';
 import { LayoutFooterComponent } from './layout/layout-footer.component';
+import { OneColumnComponent } from './layout/one-column/one-column.component';
+import { TwoColumnComponent } from './layout/two-column/two-column.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
-import { TitleService } from './services/title.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { OneColumnComponent } from './layout/one-column/one-column.component';
-import { TwoColumnComponent } from './layout/two-column/two-column.component';
+import { LanguageService } from './services/language.service';
+import { TitleService } from './services/title.service';
 
 @NgModule({
   imports: [CommonModule, NgbModule],
@@ -26,6 +27,7 @@ import { TwoColumnComponent } from './layout/two-column/two-column.component';
     TwoColumnComponent,
   ],
   providers: [
+    LanguageService,
     TitleService,
   ],
   exports: [

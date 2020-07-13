@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from '@theme/services/title.service';
 
 @Component({
   selector: 'app-user-security',
@@ -7,9 +6,7 @@ import { TitleService } from '@theme/services/title.service';
 })
 export class UserSecurityComponent implements OnInit {
   constructor(
-    private readonly titleService: TitleService,
   ) {
-    this.titleService.setTitle('User/Security');
   }
 
   ngOnInit(): void {

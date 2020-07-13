@@ -7,7 +7,7 @@ export function createTranslateLoader(http: HttpClient): TranslateHttpLoader {
 }
 
 export const TranslateModuleConfig = {
-  defaultLanguage: 'vi',
+  defaultLanguage: 'en',
   loader: {
     provide: TranslateLoader,
     useFactory: (createTranslateLoader),

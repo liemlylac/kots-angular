@@ -1,15 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '../common/common.module';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ThemeModule } from '@theme/theme.module';
+import { CommonModule } from '@modules/common/common.module';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RequestPasswordComponent } from './components/request-password/request-password.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { AuthService } from './services/auth.service';
 import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LoginLocalStorage } from './services/login-storage';
 
 @NgModule({
   imports: [
@@ -25,10 +23,6 @@ import { LoginLocalStorage } from './services/login-storage';
     RequestPasswordComponent,
     ResetPasswordComponent
   ],
-  providers: [
-    AuthService,
-    LoginLocalStorage,
-  ]
 })
 export class AuthModule {
 }

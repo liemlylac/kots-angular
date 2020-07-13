@@ -1,9 +1,7 @@
-import { LoginResult } from '@modules/auth/model/login.model';
+import { LoginModel, LoginResult } from './login.model';
 
-export class RegisterModel {
+export class RegisterModel extends LoginModel{
   displayName: string;
-  username: string;
-  password: string;
 }
 export class RegisterResult extends LoginResult {
 }

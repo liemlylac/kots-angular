@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '@modules/auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -6,4 +8,12 @@ import { Component } from '@angular/core';
   templateUrl: 'auth.component.html',
 })
 export class AuthComponent {
+  constructor(
+    private readonly authService: AuthService,
+    private readonly router: Router,
+  ) {
+    if (this.authService.isLoggedIn()) {
+      this.router.navigate(['/dashboard']);
+    }
+  }
 }

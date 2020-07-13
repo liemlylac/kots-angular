@@ -1,8 +1,17 @@
 <div class="header">
+  <div ngbDropdown class="text-right">
+    <button class="btn btn-secondary" id="dropdownLanguage" ngbDropdownToggle>
+      {{'Language.Current' | translate}} : {{[currentLanguage.label]}}
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownLanguage">
+      <a ngbDropdownItem *ngFor="let language of supportLanguages" (click)="onChangeLanguage(language.code)">
+        {{language.label}}
+      </a>
+    </div>
+  </div>
   <div ngbDropdown class="text-right" *ngIf="isLoggedIn">
-    <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>{{loginUser.fullName}}</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-      <a ngbDropdownItem routerLink="/user/account">Account</a>
+    <button class="btn btn-primary" id="dropdownAccount" ngbDropdownToggle>{{loginUser.getFullName()}}</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownAccount">
       <a ngbDropdownItem routerLink="/user/profile">Profile</a>
       <a ngbDropdownItem routerLink="/user/security">Security</a>
       <a ngbDropdownItem href="#" (click)="logout()">Logout</a>

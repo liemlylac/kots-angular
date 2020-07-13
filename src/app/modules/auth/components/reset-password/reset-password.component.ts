@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from '@theme/services/title.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -7,9 +6,7 @@ import { TitleService } from '@theme/services/title.service';
 })
 export class ResetPasswordComponent implements OnInit {
   constructor(
-    private readonly titleService: TitleService,
   ) {
-    this.titleService.setTitle('Reset password');
   }
 
   ngOnInit(): void {

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from '@theme/services/title.service';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterModel } from '@modules/auth/model/register.model';
+import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
 
 @Component({
   selector: 'app-register',
@@ -11,16 +11,20 @@ import { RegisterModel } from '@modules/auth/model/register.model';
 })
 export class RegisterComponent implements OnInit {
 
+  errors: string[];
+
   registerForm: FormGroup;
 
   submitted = false;
 
   constructor(
-    private readonly titleService: TitleService,
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
   ) {
+  }
+
+  ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       displayName: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
       username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
@@ -28,22 +32,29 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  getFormControl(fieldName): AbstractControl {
+    return this.registerForm.get(fieldName);
   }
 
   get displayName(): AbstractControl {
-    return this.registerForm.get('displayName');
+    return this.getFormControl('displayName');
   }
 
   get username(): AbstractControl {
-    return this.registerForm.get('username');
+    return this.getFormControl('username');
   }
 
   get password(): AbstractControl {
-    return this.registerForm.get('password');
+    return this.getFormControl('password');
+  }
+
+  isShowFieldDanger(fieldName): boolean {
+    const formControl = this.getFormControl(fieldName);
+    return formControl.invalid && (formControl.dirty || formControl.touched);
   }
 
   onSubmit(data: RegisterModel): void {
+    this.errors = [];
     if (!this.registerForm.valid) {
       return;
     }
@@ -53,12 +64,24 @@ export class RegisterComponent implements OnInit {
         this.submitted = false;
 
         if (result) {
-          this.router.navigate(['/dashboard']).then();
-          return;
+          return this.router.navigate(['/dashboard']);
+        }
+      },
+      (error: HttpExceptionFilterResult) => {
+        this.submitted = false;
+        let messages = error.message;
+
+        if (!Array.isArray(messages)) {
+          messages = [messages];
         }
 
+        messages.forEach(message => {
+          if (typeof message === 'string') {
+            this.errors.push(message);
+          }
+        });
         // Clear password field
-        this.registerForm.get('password').reset();
+        this.password.reset();
       },
     );
   }

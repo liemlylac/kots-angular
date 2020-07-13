@@ -3,10 +3,10 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
     <div *ngFor="let error of errors" class="alert alert-danger">{{error}}</div>
     <div class="text-right">
-      <a routerLink="/auth/request-password">{{'Auth.Forgot-your-password' | translate}}?</a>
+      <a routerLink="/auth/request-password">{{'Auth.General.Forgot-your-password' | translate}}?</a>
     </div>
     <div class="form-group">
-      <label for="username">Username</label>
+      <label for="username">{{'Auth.General.Username' | translate}}</label>
       <input type="text" id="username" formControlName="username" required
              class="form-control" [class.is-invalid]="isShowFieldDanger('username')"/>
       <div *ngIf="isShowFieldDanger('username')" class="bg-gradient-danger text-danger">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="form-group">
-      <label for="password">Password</label>
+      <label for="password">{{'Auth.General.Password' | translate}}</label>
       <input type="password" id="password" formControlName="password" required minlength="6" maxlength="30"
              class="form-control" [class.is-invalid]="isShowFieldDanger('password')"/>
       <small class="form-text text-muted">
@@ -44,11 +44,13 @@
 
     <div class="form-group">
       <button class="btn btn-primary btn-block" type="submit" [disabled]="submitted">
-        {{ 'Auth.Login.Title' | translate }}
+        {{ 'Auth.Login.Button' | translate }}
       </button>
     </div>
     <div class="form-group">
-      <button class="btn btn-secondary btn-block" routerLink="/auth/register">Create a new account</button>
+      <button class="btn btn-secondary btn-block" routerLink="/auth/register">
+        {{'Auth.Register.Button' | translate }}
+      </button>
     </div>
   </form>
 </div>

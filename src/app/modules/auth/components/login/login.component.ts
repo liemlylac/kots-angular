@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
-import { LoginModel } from '../../model/login.model';
+import { LoginModel } from '../../models/login.model';
 import { AuthService } from '../../services/auth.service';
 
 @Component({

@@ -1,8 +1,61 @@
-<app-one-column>
-  <div class="ml-5 mt-5">
-    <img src="assets/images/logo128.png" alt="Kots Logo" width="64" height="64">
-  </div>
-  <div class="auth-form">
+<div class="main-content h-100 d-flex flex-column">
+  <nav class="navbar navbar-top navbar-horizontal navbar-expand-md">
+    <div class="container px-4">
+      <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/auth/login']">
+        <img src="assets/images/logo128.png" alt="Kots logo"/>
+      </a>
+      <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+              aria-controls="sidenav-collapse-main">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+        <div class="navbar-collapse-header d-md-none">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a routerLinkActive="active" [routerLink]="['/auth/login']">
+                <img src="assets/images/logo128.png" alt="Kots logo">
+              </a>
+            </div>
+            <div class="col-6 collapse-close">
+              <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed">
+                <span></span>
+                <span></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="https://github.com/liemlylac/kots-angular" class="nav-link nav-link-icon">
+              <i class="fa fa-adobe"></i>
+              <span class="nav-link-inner--text">Github Repo</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://github.com/liemlylac/kots-nestjs" class="nav-link nav-link-icon">
+              <i class="fa fa-adobe"></i>
+              <span class="nav-link-inner--text">Nest API</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://github.com/liemlylac/kots-angular" class="nav-link nav-link-icon">
+              <i class="fa fa-adobe"></i>
+              <span class="nav-link-inner--text">Documents</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="https://github.com/liemlylac/kots-angular/blob/master/LICENSE"
+               class="nav-link nav-link-icon" target="_blank">
+              <i class="fa fa-adobe"></i>
+              <span class="nav-link-inner--text">MIT License</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="card">
     <router-outlet></router-outlet>
   </div>
-</app-one-column>
+  <app-footer class="mt-auto py-5"></app-footer>
+</div>

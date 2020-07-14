@@ -4,6 +4,7 @@ import { PageRoutingModule } from './page-routing.module';
 import { PageComponent } from './page.component';
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { CommonModule } from '../common/common.module';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   imports: [
@@ -12,6 +13,9 @@ import { CommonModule } from '../common/common.module';
     PageRoutingModule,
     DashboardModule
   ],
-  declarations: [PageComponent],
+  declarations: [
+    SidebarComponent,
+    PageComponent,
+  ],
 })
 export class PageModule {}

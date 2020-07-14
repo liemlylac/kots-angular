@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   templateUrl: 'auth.component.html',
 })
 export class AuthComponent {
+
+  isCollapsed = true;
+
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,

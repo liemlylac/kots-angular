@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpService } from '@modules/common/service/http.service';
-import { RegisterModel, RegisterResult } from '@modules/auth/model/register.model';
+import { RegisterModel, RegisterResult } from '@modules/auth/models/register.model';
 import { LoginLocalStorage } from './login-storage';
-import { LoginModel, LoginResult } from '../model/login.model';
+import { LoginModel, LoginResult } from '../models/login.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -69,9 +69,9 @@ export class AuthService {
     );
   }
 
-  logout(): void {
+  logout(): Promise<boolean> {
     this.loginStorage.clear();
-    this.router.navigate(['/auth/login']);
+    return this.router.navigate(['/auth/login']);
   }
 
   isLoggedIn(): boolean {

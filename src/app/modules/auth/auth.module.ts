@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ThemeModule } from '@theme/theme.module';
 import { CommonModule } from '@modules/common/common.module';
 import { LoginComponent } from './components/login/login.component';
@@ -15,6 +16,7 @@ import { AuthRoutingModule } from './auth-routing.module';
     ThemeModule,
     AuthRoutingModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   declarations: [
     AuthComponent,

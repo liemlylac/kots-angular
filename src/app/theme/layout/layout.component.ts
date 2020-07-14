@@ -8,12 +8,10 @@ import { Component, Input } from '@angular/core';
     <div class="layout-sidebar float-left h-100 position-fixed" *ngIf="isShowSideBar">
       <ng-content select="app-sidebar"></ng-content>
     </div>
-    <div class="layout-container d-flex flex-column h-100">
-      <ng-content select="app-layout-header"></ng-content>
-      <div class="layout-content">
-        <ng-content></ng-content>
-      </div>
-      <ng-content select="app-layout-footer"></ng-content>
+    <div class="layout-container h-100">
+      <ng-content select="app-header"></ng-content>
+      <ng-content></ng-content>
+      <ng-content select="app-footer"></ng-content>
     </div>
   </div>`,
 })

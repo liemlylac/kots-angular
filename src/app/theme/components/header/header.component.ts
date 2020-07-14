@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { LoginLocalStorage } from '@modules/auth/services/login-storage';
-import { LoginUser } from '@modules/auth/model/login.model';
+import { LoginUser } from '@modules/auth/models/login.model';
 import { Language, LanguageService } from '@theme/services/language.service';
 
 @Component({

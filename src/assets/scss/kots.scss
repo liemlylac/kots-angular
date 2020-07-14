@@ -1,4 +1,15 @@
+// Override bootstrap
 @import "kots/functions";
 @import "kots/variables";
+@import "kots/mixins";
 
+// Bootstrap 4.5.0
 @import "~bootstrap/scss/bootstrap";
+
+// Core Kots Scss
+@import "kots/reboot";
+@import "kots/utils";
+@import "kots/components";
+
+// Thirds party
+@import "kots/vendors";

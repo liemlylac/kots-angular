@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoginUser } from '@modules/auth/model/login.model';
+import { LoginUser } from '@modules/auth/models/login.model';
 
 export abstract class LoginStorage {
   abstract clear(): void;

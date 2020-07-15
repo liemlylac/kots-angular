@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
       <div class="main-content h-100 d-flex flex-column">
         <app-header></app-header>
         <router-outlet></router-outlet>
-        <app-footer class="mt-auto py-5"></app-footer>
+        <app-footer class="mt-auto"></app-footer>
       </div>
     </app-layout>`,
 })

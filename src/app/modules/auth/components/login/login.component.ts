@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
 import { LoginModel } from '../../models/login.model';
 import { AuthService } from '../../services/auth.service';
@@ -62,7 +63,7 @@ export class LoginComponent implements OnInit {
           return this.router.navigate(['/dashboard']);
         }
       },
-      (error: HttpExceptionFilterResult) => {
+      (error: HttpExceptionFilterResult | HttpErrorResponse) => {
         this.submitted = false;
         let messages = error.message;
 

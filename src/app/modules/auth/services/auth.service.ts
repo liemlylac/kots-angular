@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpService } from '@modules/common/service/http.service';
-import { RegisterModel, RegisterResult } from '@modules/auth/models/register.model';
+import { RegisterModel, RegisterResult } from '../models/register.model';
 import { LoginLocalStorage } from './login-storage';
 import { LoginModel, LoginResult } from '../models/login.model';
+import { ResetPassword } from '../models/reset-password.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -23,6 +24,8 @@ export class AuthService {
   public static LOGIN_ENDPOINT = '/auth/login';
   public static REGISTER_ENDPOINT = '/auth/register';
   public static REQUEST_PASSWORD = '/auth/request-password';
+  public static VERIFY_RESET_PASSWORD_TOKEN = '/auth/verify-reset-password-token';
+  public static RESET_PASSWORD = '/auth/reset-password';
 
   authenticate(data: LoginModel): Observable<any> {
     return this.httpService.post(AuthService.LOGIN_ENDPOINT, data).pipe(
@@ -34,9 +37,7 @@ export class AuthService {
           return res.isSuccess;
         }
       ),
-      catchError((httpError: HttpErrorResponse) => {
-        return throwError(httpError.error);
-      })
+      catchError(this.handleHttpError),
     );
   }
 
@@ -50,9 +51,7 @@ export class AuthService {
           return res.isSuccess;
         }
       ),
-      catchError((httpError: HttpErrorResponse) => {
-        return throwError(httpError.error);
-      })
+      catchError(this.handleHttpError),
     );
   }
 
@@ -63,10 +62,33 @@ export class AuthService {
           return true;
         }
       }),
-      catchError((httpError: HttpErrorResponse) => {
-        return throwError(httpError.error);
-      }),
+      catchError(this.handleHttpError),
     );
+  }
+
+  verifyResetPasswordToken(data: {token: string}): Observable<any> {
+    return this.httpService.get(AuthService.VERIFY_RESET_PASSWORD_TOKEN, { params: data }).pipe(
+      map(() => {
+        return true;
+      }),
+      catchError(this.handleHttpError),
+    );
+  }
+
+  resetPassword(data: ResetPassword): Observable<any> {
+    return this.httpService.post(AuthService.RESET_PASSWORD, data).pipe(
+      map(() => {
+        return true;
+      }),
+      catchError(this.handleHttpError),
+    );
+  }
+
+  handleHttpError(httpError: HttpErrorResponse): Observable<never> {
+    if (httpError.status === 0) {
+      return throwError(httpError);
+    }
+    return throwError(httpError.error);
   }
 
   logout(): Promise<boolean> {

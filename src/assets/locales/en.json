@@ -4,6 +4,7 @@
       "Full-name": "Full Name",
       "Username": "Username",
       "Password": "Password",
+      "Password-confirm": "Confirm Password",
       "Email": "Email",
       "Forgot-your-password": "Forgot your password"
     },

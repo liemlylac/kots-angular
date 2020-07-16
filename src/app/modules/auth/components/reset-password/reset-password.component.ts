@@ -1,6 +1,6 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { timer } from 'rxjs';
 import { AuthService } from '@modules/auth/services/auth.service';
@@ -12,7 +12,7 @@ import { ResetPassword } from '@modules/auth/models/reset-password.model';
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
-export class ResetPasswordComponent implements OnInit, AfterViewChecked {
+export class ResetPasswordComponent implements OnInit {
 
   errors: string[];
 
@@ -37,11 +37,16 @@ export class ResetPasswordComponent implements OnInit, AfterViewChecked {
     this.resetPasswordForm = this.formBuilder.group({
       password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
       passwordConfirm: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]]
-    });
+    }
+    // , { validators: this.confirmPasswordValidator }
+    );
   }
 
-  ngAfterViewChecked(): void {
-    // this.password.markAsTouched();
+  confirmPasswordValidator(formGroup: FormGroup): ValidationErrors | null {
+    const pass = formGroup.controls.password.value;
+    const confirm = formGroup.controls.confirmPassword.value;
+
+    return pass && confirm && pass === confirm ? null : { confirmPasswordIsNotSame: true };
   }
 
   validateToken(): void {

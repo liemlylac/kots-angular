@@ -1,9 +1,12 @@
+// Angular import
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+// Vendor import
 import { JwtModule } from '@auth0/angular-jwt';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+// Self import
 import { ThemeModule } from '@theme/theme.module';
 import { AuthModule } from '@modules/auth/auth.module';
 import { PageModule } from '@modules/page/page.module';
@@ -12,6 +15,7 @@ import { TranslateModuleConfig } from '@modules/common/config/translate.config';
 import { jwtOptionsProvider } from '@modules/auth/jwt-options-factory';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { appInitializerFactory } from './app.init';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,15 @@ import { AppRoutingModule } from './app-routing.module';
     ThemeModule,
     AuthModule,
     PageModule,
-    ErrorModule
+    ErrorModule,
+  ],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: appInitializerFactory,
+      deps: [TranslateService, Injector],
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

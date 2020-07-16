@@ -24,5 +24,8 @@
       "Title": "Reset password",
       "Button": "Reset password"
     }
+  },
+  "Language": {
+    "Current": "Lang"
   }
 }

@@ -1,20 +1,68 @@
-<div class="header">
-  <div ngbDropdown class="text-right">
-    <button class="btn btn-secondary" id="dropdownLanguage" ngbDropdownToggle>
-      {{'Language.Current' | translate}} : {{[currentLanguage.label]}}
-    </button>
-    <div ngbDropdownMenu aria-labelledby="dropdownLanguage">
-      <a ngbDropdownItem *ngFor="let language of supportLanguages" (click)="onChangeLanguage(language.code)">
-        {{language.label}}
+<div class="header py-2 px-4">
+  <ul class="nav justify-content-end" *ngIf="isLoggedIn">
+    <li class="nav-item" ngbDropdown>
+      <a class="nav-link cursor-pointer" id="dropdownNotify" ngbDropdownToggle
+         placement="bottom" ngbTooltip="{{'Notification' | translate}}"
+         [openDelay]="headerToolTipOpenDelay" [closeDelay]="headerToolTipCloseDelay">
+        <fa-icon [icon]="faBell"></fa-icon>
+        <span class="badge badge-primary badge-pill">{{getNotificationCount()}}</span>
       </a>
-    </div>
-  </div>
-  <div ngbDropdown class="text-right" *ngIf="isLoggedIn">
-    <button class="btn btn-primary" id="dropdownAccount" ngbDropdownToggle>{{loginUser.getFullName()}}</button>
-    <div ngbDropdownMenu aria-labelledby="dropdownAccount">
-      <a ngbDropdownItem routerLink="/user/profile">Profile</a>
-      <a ngbDropdownItem routerLink="/user/security">Security</a>
-      <button ngbDropdownItem (click)="logout()">Logout</button>
-    </div>
-  </div>
+      <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="dropdownNotify">
+        <div class="dropdown-header text-center">Notification</div>
+        <div class="dropdown-divider"></div>
+        <div *ngFor="let notify of notifications" routerLink="{{notify.link}}"
+             ngbDropdownItem class="cursor-pointer" [class.bg-light]="!notify.read">
+          <div class="media my-2">
+            <img src="{{notify.image}}" class="mr-3" alt="">
+            <div class="media-body">
+              {{notify.content}}
+              <div class="text-muted">{{notify.time}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item" ngbDropdown>
+      <a class="nav-link cursor-pointer" id="dropdownMessage" ngbDropdownToggle
+         placement="bottom" ngbTooltip="{{'Message' | translate}}"
+         [openDelay]="headerToolTipOpenDelay" [closeDelay]="headerToolTipCloseDelay">
+        <fa-icon [icon]="faComment"></fa-icon>
+        <span class="badge badge-primary badge-pill">{{getMessageCount()}}</span>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="dropdownMessage">
+        <div class="dropdown-header text-center">Message</div>
+        <div class="dropdown-divider"></div>
+        <div *ngFor="let message of messages" routerLink="{{message.link}}"
+             ngbDropdownItem class="cursor-pointer" [class.bg-light]="!message.read">
+          <div class="media my-2">
+            <img src="{{message.image}}" class="mr-3" alt="">
+            <div class="media-body">
+              <div class="text-large">{{message.group}}</div>
+              <small class="text-small">
+                {{message.content}}
+                <small class="text-muted">{{message.time}}</small>
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item" ngbDropdown>
+      <a class="nav-link cursor-pointer" id="dropdownAccount" ngbDropdownToggle
+         placement="bottom" ngbTooltip="{{'My Account' | translate}}"
+         [openDelay]="headerToolTipOpenDelay" [closeDelay]="headerToolTipCloseDelay">
+        <fa-icon [icon]="faUser"></fa-icon>
+        <span class="ml-2">{{loginUser.getFullName()}}</span>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu-right" aria-labelledby="dropdownAccount">
+        <div class="dropdown-header">My Account</div>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem routerLink="/user/profile">Profile</button>
+        <button ngbDropdownItem routerLink="/user/security">Security</button>
+        <button ngbDropdownItem routerLink="/user/setting">Setting</button>
+        <div class="dropdown-divider"></div>
+        <button ngbDropdownItem class="cursor-pointer" (click)="logout()">Logout</button>
+      </div>
+    </li>
+  </ul>
 </div>

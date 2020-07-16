@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserSecurityComponent } from './user-security/user-security.component';
+import { UserSettingComponent } from './user-setting/user-setting.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'security',
         component: UserSecurityComponent,
+      },
+      {
+        path: 'setting',
+        component: UserSettingComponent,
       },
       {
         path: '',

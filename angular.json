@@ -38,7 +38,9 @@
               "src/assets/vendor/@fontawesome/css/free-5.13.1.all.min.css",
               "src/assets/scss/kots.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/pace-js/pace.min.js"
+            ]
           },
           "configurations": {
             "production": {

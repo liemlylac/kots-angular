@@ -1,14 +1,15 @@
 <div class="main-content h-100 d-flex flex-column">
   <nav class="navbar navbar-top navbar-horizontal navbar-expand-md">
-    <div class="container px-4">
+    <div class="container">
       <a class="navbar-brand" routerLinkActive="active" [routerLink]="['/auth/login']">
-        <img src="assets/images/logo48.png" alt="Kots logo"/>
+        <img src="{{appLogo}}" alt="Kots logo"/>
       </a>
       <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
               aria-controls="sidenav-collapse-main">
-        <span class="navbar-toggler-icon"></span>
+        <fa-icon [icon]="faBars"></fa-icon>
       </button>
-      <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+      <div class="collapse navbar-collapse"
+           [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
         <div class="navbar-collapse-header d-md-none">
           <div class="row">
             <div class="col-6 collapse-brand">
@@ -16,10 +17,9 @@
                 <img src="assets/images/logo48.png" alt="Kots logo">
               </a>
             </div>
-            <div class="col-6 collapse-close">
+            <div class="col-6 collapse-close text-right">
               <button type="button" class="navbar-toggler" (click)="isCollapsed=!isCollapsed">
-                <span></span>
-                <span></span>
+                <fa-icon [icon]="faTimes"></fa-icon>
               </button>
             </div>
           </div>
@@ -52,8 +52,12 @@
       </div>
     </div>
   </nav>
-  <div class="card">
-    <router-outlet></router-outlet>
+  <div class="row justify-content-center mt-xl-4 mt-lg-6 mt-md-4 mt-2">
+    <div class="card col-xl-4 col-lg-6 col-md-8 col-10">
+      <div class="card-body p-xl-5 p-lg-3 p-md-2 p-1">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
   </div>
   <app-footer class="mt-auto"></app-footer>
 </div>

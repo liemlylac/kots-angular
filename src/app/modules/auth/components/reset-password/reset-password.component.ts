@@ -6,15 +6,14 @@ import { timer } from 'rxjs';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
 import { ResetPassword } from '@modules/auth/models/reset-password.model';
+import { AlertService } from '@theme/alert/alert.service';
+import { AlertType } from '@theme/alert/alert.model';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.scss']
 })
 export class ResetPasswordComponent implements OnInit {
-
-  errors: string[];
 
   resetPasswordForm: FormGroup;
   redirectTimeout = 5;
@@ -28,6 +27,7 @@ export class ResetPasswordComponent implements OnInit {
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
+    private readonly alertService: AlertService,
   ) {
   }
 
@@ -52,7 +52,7 @@ export class ResetPasswordComponent implements OnInit {
   validateToken(): void {
     this.activatedRoute.queryParams.subscribe(
       (tokenParam) => {
-        this.errors = [];
+        this.alertService.clear();
         if (!tokenParam.token) {
           this.isMissingToken = true;
           timer(1000, 1000).subscribe(() => this.redirectTimeout--);
@@ -89,7 +89,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit(data: ResetPassword): void {
-    this.errors = [];
+    this.alertService.clear();
     if (this.resetPasswordForm.invalid) {
       this.resetPasswordForm.markAllAsTouched();
       return;
@@ -112,7 +112,10 @@ export class ResetPasswordComponent implements OnInit {
 
         messages.forEach(message => {
           if (typeof message === 'string') {
-            this.errors.push(message);
+            this.alertService.add({
+              type: AlertType.Error,
+              message
+            });
           }
         });
 

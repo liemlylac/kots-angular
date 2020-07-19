@@ -3,16 +3,16 @@ import { Router } from '@angular/router';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
+import { AlertService } from '@theme/alert/alert.service';
 import { LoginModel } from '../../models/login.model';
 import { AuthService } from '../../services/auth.service';
+import { AlertType } from '@theme/alert/alert.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
-
-  errors: string[];
 
   loginForm: FormGroup;
 
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
+    private readonly alertService: AlertService
   ) {
   }
 
@@ -50,7 +51,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(data: LoginModel): void {
-    this.errors = [];
+    this.alertService.clear();
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       return;
@@ -73,7 +74,10 @@ export class LoginComponent implements OnInit {
 
         messages.forEach(message => {
           if (typeof message === 'string') {
-            this.errors.push(message);
+            this.alertService.add({
+              type: AlertType.Error,
+              message
+            });
           }
         });
 

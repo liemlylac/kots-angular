@@ -4,14 +4,14 @@ import { AuthService } from '@modules/auth/services/auth.service';
 import { Router } from '@angular/router';
 import { RegisterModel } from '@modules/auth/models/register.model';
 import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
+import { AlertService } from '@theme/alert/alert.service';
+import { AlertType } from '@theme/alert/alert.model';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
 })
 export class RegisterComponent implements OnInit {
-
-  errors: string[];
 
   registerForm: FormGroup;
 
@@ -21,6 +21,7 @@ export class RegisterComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
+    private readonly alertService: AlertService
   ) {
   }
 
@@ -54,7 +55,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(data: RegisterModel): void {
-    this.errors = [];
+    this.alertService.clear();
     if (!this.registerForm.valid) {
       return;
     }
@@ -77,7 +78,10 @@ export class RegisterComponent implements OnInit {
 
         messages.forEach(message => {
           if (typeof message === 'string') {
-            this.errors.push(message);
+            this.alertService.add({
+              type: AlertType.Error,
+              message
+            });
           }
         });
         // Clear password field

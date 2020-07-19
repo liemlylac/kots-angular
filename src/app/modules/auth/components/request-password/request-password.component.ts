@@ -3,14 +3,15 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { HttpExceptionFilterResult } from '@modules/common/model/http-exception-filter-result';
+import { AlertService } from '@theme/alert/alert.service';
+import { AlertType } from '@theme/alert/alert.model';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-request-password',
   templateUrl: 'request-password.component.html'
 })
 export class RequestPasswordComponent implements OnInit {
-  errors: string[];
-
   requestPasswordForm: FormGroup;
 
   submitted = false;
@@ -19,6 +20,8 @@ export class RequestPasswordComponent implements OnInit {
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
+    private readonly translateService: TranslateService,
+    private readonly alertService: AlertService,
   ) {
   }
 
@@ -28,7 +31,8 @@ export class RequestPasswordComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(6),
-          Validators.maxLength(20)
+          Validators.maxLength(50),
+          Validators.email
         ]
       ],
     });
@@ -48,17 +52,20 @@ export class RequestPasswordComponent implements OnInit {
   }
 
   onSubmit(data: { email: string }): void {
-    this.errors = [];
+    this.alertService.clear();
     if (this.requestPasswordForm.invalid) {
       this.requestPasswordForm.markAllAsTouched();
       return;
     }
     this.submitted = true;
     this.authService.requestPassword(data).subscribe(
-      (result: boolean) => {
+      (result: { email: string }) => {
         this.submitted = false;
-        if (result) {
-          return this.router.navigate(['/auth/reset-password']);
+        if (result.email) {
+          this.alertService.add({
+            type: AlertType.Success,
+            message: this.translateService.instant('Auth.Request-password.Sent-email', { email: result.email })
+          });
         }
       },
       (error: HttpExceptionFilterResult) => {
@@ -71,7 +78,10 @@ export class RequestPasswordComponent implements OnInit {
 
         messages.forEach(message => {
           if (typeof message === 'string') {
-            this.errors.push(message);
+            this.alertService.add({
+              type: AlertType.Error,
+              message
+            });
           }
         });
       }

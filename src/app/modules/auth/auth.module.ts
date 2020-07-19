@@ -9,6 +9,8 @@ import { RequestPasswordComponent } from './components/request-password/request-
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { AuthComponent } from './auth.component';
 import { AuthRoutingModule } from './auth-routing.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { AlertModule } from '@theme/alert/alert.module';
 
 @NgModule({
   imports: [
@@ -17,6 +19,8 @@ import { AuthRoutingModule } from './auth-routing.module';
     AuthRoutingModule,
     ReactiveFormsModule,
     NgbModule,
+    FontAwesomeModule,
+    AlertModule,
   ],
   declarations: [
     AuthComponent,

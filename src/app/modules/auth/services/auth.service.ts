@@ -58,9 +58,7 @@ export class AuthService {
   requestPassword(data: { email: string }): Observable<any> {
     return this.httpService.post(AuthService.REQUEST_PASSWORD, data).pipe(
       map((res) => {
-        if (res) {
-          return true;
-        }
+        return res;
       }),
       catchError(this.handleHttpError),
     );

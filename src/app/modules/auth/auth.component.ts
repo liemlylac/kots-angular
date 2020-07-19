@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { Router } from '@angular/router';
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-auth',
@@ -10,6 +11,9 @@ import { Router } from '@angular/router';
 export class AuthComponent {
 
   isCollapsed = true;
+  appLogo = 'assets/images/logo48.png';
+  faBars = faBars;
+  faTimes = faTimes;
 
   constructor(
     private readonly authService: AuthService,

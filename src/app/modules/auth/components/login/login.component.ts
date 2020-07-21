@@ -28,8 +28,15 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]]
+      email: ['', [
+        Validators.required,
+        Validators.email
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(30)
+      ]]
     });
   }
 
@@ -37,8 +44,8 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get(fieldName);
   }
 
-  get username(): AbstractControl {
-    return this.getFormControl('username');
+  get email(): AbstractControl {
+    return this.getFormControl('email');
   }
 
   get password(): AbstractControl {

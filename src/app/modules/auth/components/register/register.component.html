@@ -6,34 +6,31 @@
   </div>
   <div class="form-group">
     <label for="fullName">{{'Auth.General.Full-name' | translate}}</label>
-    <input type="text" id="fullName" formControlName="displayName" required
-           class="form-control" [class.is-invalid]="isShowFieldDanger('displayName')"/>
-    <div *ngIf="isShowFieldDanger('displayName')" class="bg-gradient-danger text-danger">
-      <div *ngIf="displayName.errors.required">
+    <input type="text" id="fullName" formControlName="fullName" required
+           class="form-control" [class.is-invalid]="isShowFieldDanger('fullName')"/>
+    <div *ngIf="isShowFieldDanger('fullName')" class="bg-gradient-danger text-danger">
+      <div *ngIf="fullName.errors.required">
         Full name is required
       </div>
-      <div *ngIf="displayName.errors.minlength">
+      <div *ngIf="fullName.errors.minlength">
         Full name must be at least 6 characters long.
       </div>
-      <div *ngIf="displayName.errors.maxlength">
+      <div *ngIf="fullName.errors.maxlength">
         Full name must be at most 50 characters long.
       </div>
     </div>
   </div>
 
   <div class="form-group">
-    <label for="username">{{'Auth.General.Username' | translate}}</label>
-    <input type="text" id="username" formControlName="username" required
-           class="form-control" [class.is-invalid]="isShowFieldDanger('username')"/>
-    <div *ngIf="isShowFieldDanger('username')" class="bg-gradient-danger text-danger">
-      <div *ngIf="username.errors.required">
-        Username is required
+    <label for="email">{{'Auth.General.Email' | translate}}</label>
+    <input type="text" id="email" formControlName="email" required
+           class="form-control" [class.is-invalid]="isShowFieldDanger('email')"/>
+    <div *ngIf="isShowFieldDanger('email')" class="bg-gradient-danger text-danger">
+      <div *ngIf="email.errors.required">
+        Email is required
       </div>
-      <div *ngIf="username.errors.minlength">
-        Username must be at least 6 characters long.
-      </div>
-      <div *ngIf="username.errors.maxlength">
-        Username must be at most 20 characters long.
+      <div *ngIf="email.errors.email">
+        Email can contain only latin letters, numbers, '@' and '.'
       </div>
     </div>
   </div>

@@ -27,9 +27,9 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      displayName: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      username: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(30)]]
+      fullName: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]]
     });
   }
 
@@ -37,12 +37,12 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get(fieldName);
   }
 
-  get displayName(): AbstractControl {
-    return this.getFormControl('displayName');
+  get fullName(): AbstractControl {
+    return this.getFormControl('fullName');
   }
 
-  get username(): AbstractControl {
-    return this.getFormControl('username');
+  get email(): AbstractControl {
+    return this.getFormControl('email');
   }
 
   get password(): AbstractControl {

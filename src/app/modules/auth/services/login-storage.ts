@@ -21,7 +21,7 @@ export class LoginLocalStorage extends LoginStorage {
 
   get(): LoginUser {
     const storageData = JSON.parse(localStorage.getItem(this.key));
-    if (storageData && storageData.token) {
+    if (storageData && storageData.accessToken) {
       return new LoginUser(storageData);
     }
     return null;

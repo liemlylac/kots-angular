@@ -22,6 +22,8 @@ export class ResetPasswordComponent implements OnInit {
   isSubmitted = false;
   isInvalidToken = false;
 
+  token: string;
+
   constructor(
     private readonly authService: AuthService,
     private readonly formBuilder: FormBuilder,
@@ -35,10 +37,10 @@ export class ResetPasswordComponent implements OnInit {
     this.isVerifyingToken = true;
     this.validateToken();
     this.resetPasswordForm = this.formBuilder.group({
-      password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
-      passwordConfirm: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]]
-    }
-    // , { validators: this.confirmPasswordValidator }
+        password: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(30)]]
+      }
+      // , { validators: this.confirmPasswordValidator }
     );
   }
 
@@ -51,15 +53,16 @@ export class ResetPasswordComponent implements OnInit {
 
   validateToken(): void {
     this.activatedRoute.queryParams.subscribe(
-      (tokenParam) => {
+      (params) => {
         this.alertService.clear();
-        if (!tokenParam.token) {
+        if (!params.token) {
           this.isMissingToken = true;
           timer(1000, 1000).subscribe(() => this.redirectTimeout--);
           timer(5000).subscribe(() => this.router.navigate(['/auth/login']));
           return;
         }
-        this.authService.verifyResetPasswordToken({token: tokenParam.token}).subscribe(
+        this.token = params.token;
+        this.authService.verifyResetPasswordToken({ token: this.token }).subscribe(
           () => {
             this.isVerifyingToken = false;
           }, () => {
@@ -79,12 +82,12 @@ export class ResetPasswordComponent implements OnInit {
     return this.getFormControl('password');
   }
 
-  get passwordConfirm(): AbstractControl {
-    return this.getFormControl('passwordConfirm');
+  get confirmPassword(): AbstractControl {
+    return this.getFormControl('confirmPassword');
   }
 
   isShowFieldDanger(fieldName): boolean {
-    const formControl =  this.getFormControl(fieldName);
+    const formControl = this.getFormControl(fieldName);
     return formControl.invalid && (formControl.dirty || formControl.touched);
   }
 
@@ -95,7 +98,7 @@ export class ResetPasswordComponent implements OnInit {
       return;
     }
     this.isSubmitted = true;
-    this.authService.resetPassword(data).subscribe(
+    this.authService.resetPassword(this.token, data).subscribe(
       (result: boolean) => {
         this.isSubmitted = false;
         if (result) {
@@ -121,7 +124,7 @@ export class ResetPasswordComponent implements OnInit {
 
         // Clear password field
         this.password.reset();
-        this.passwordConfirm.reset();
+        this.confirmPassword.reset();
       }
     );
   }

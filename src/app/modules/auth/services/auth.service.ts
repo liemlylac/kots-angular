@@ -73,8 +73,8 @@ export class AuthService {
     );
   }
 
-  resetPassword(data: ResetPassword): Observable<any> {
-    return this.httpService.post(AuthService.RESET_PASSWORD, data).pipe(
+  resetPassword(token, data: ResetPassword): Observable<any> {
+    return this.httpService.post(AuthService.RESET_PASSWORD, data, { params: { token }}).pipe(
       map(() => {
         return true;
       }),

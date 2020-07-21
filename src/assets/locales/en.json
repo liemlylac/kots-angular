@@ -1,11 +1,10 @@
 {
   "Auth": {
     "General": {
-      "Full-name": "Full Name",
-      "Username": "Username",
+      "Full-name": "Your Name",
+      "Email": "Email",
       "Password": "Password",
       "Password-confirm": "Confirm Password",
-      "Email": "Email",
       "Forgot-your-password": "Forgot your password"
     },
     "Login": {

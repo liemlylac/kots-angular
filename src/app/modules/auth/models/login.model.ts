@@ -1,5 +1,5 @@
 export class LoginModel {
-  username: string;
+  email: string;
   password: string;
 }
 
@@ -21,16 +21,16 @@ export class LoginResult {
 }
 
 export class LoginUser {
-  private readonly displayName: string;
-  private readonly username: string;
-  private readonly token: string;
+  private readonly fullName: string;
+  private readonly email: string;
+  private readonly accessToken: string;
 
   constructor(
     data: LoginUser
   ) {
-    this.displayName = data.displayName;
-    this.username = data.username;
-    this.token = data.token;
+    this.fullName = data.fullName;
+    this.email = data.email;
+    this.accessToken = data.accessToken;
   }
 
   toString(): string {
@@ -38,11 +38,11 @@ export class LoginUser {
   }
 
   getFullName(): string {
-    return this.displayName;
+    return this.fullName;
   }
 
   getAccessToken(): string {
-    return this.token;
+    return this.accessToken;
   }
 
 

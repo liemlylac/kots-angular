@@ -1,0 +1,5 @@
+$kots-primary: mat-palette($mat-indigo, 800, 300, 900);
+$kots-accent: mat-palette($mat-light-blue);
+$kots-warn: mat-palette($mat-pink, 600);
+
+$kots-theme: mat-light-theme($kots-primary, $kots-accent, $kots-warn);

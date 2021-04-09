@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+
+@mixin kots-child-component-theme($theme) {
+  $warn: map-get($theme, warn);
+
+  kots-child {
+    > div {
+      border-color: mat-color($warn);
+
+      > h2 {
+        color: mat-color($warn);
+      }
+    }
+  }
+}

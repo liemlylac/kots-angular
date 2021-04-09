@@ -1,1 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'styles-variables';
+
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+@import 'styles-reset';
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@import './themes/default-theme';
+@import './themes/light-theme';
+@import './themes/black-theme';
+@import './themes/nature-theme';
+
+@import 'styles-reset.scss-theme';
+@import './app/app/app.component.scss-theme';
+@import './app/shared/big-input/big-input/big-input.component.scss-theme';
+@import './app/pages/dashboard/dashboard/dashboard.component.scss-theme';
+@import './app/pages/examples/notifications/components/notifications.component.scss-theme';
+@import './app/pages/examples/todos/components/todos-container.component.scss-theme';
+@import './app/pages/examples/stock-market/components/stock-market-container.component.scss-theme';
+@import './app/pages/examples/theming/parent/parent.component.scss-theme';
+@import './app/pages/examples/theming/child/child.component.scss-theme';
+@import './app/pages/examples/examples/examples.component.scss-theme';
+
+@mixin custom-components-theme($theme) {
+  @include kots-styles-reset-theme($theme);
+  @include kots-app-component-theme($theme);
+  @include kots-about-component-theme($theme);
+  @include kots-big-input-component-theme($theme);
+  @include kots-notifications-component-theme($theme);
+  @include kots-todos-container-component-theme($theme);
+  @include kots-stock-market-container-component-theme($theme);
+  @include kots-parent-component-theme($theme);
+  @include kots-child-component-theme($theme);
+  @include kots-examples-component-theme($theme);
+}
+
+.default-theme {
+  @include angular-material-theme($kots-theme);
+  @include custom-components-theme($kots-theme);
+}
+
+.light-theme {
+  @include angular-material-theme($kots-light-theme);
+  @include custom-components-theme($kots-light-theme);
+}
+
+.black-theme {
+  @include angular-material-theme($kots-black-theme);
+  @include custom-components-theme($kots-black-theme);
+}
+
+.nature-theme {
+  @include angular-material-theme($kots-nature-theme);
+  @include custom-components-theme($kots-nature-theme);
+}

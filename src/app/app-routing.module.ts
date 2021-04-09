@@ -1,29 +1,53 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { NotFoundComponent } from '@modules/error/not-found/not-found.component';
-
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule),
-  },
-  {
     path: '',
-    loadChildren: () => import('./modules/page/page.module').then(m => m.PageModule),
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
   },
   {
-    path: 'error',
-    loadChildren: () => import('./modules/error/error.module').then(m => m.ErrorModule),
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule)
   },
+  // {
+  //   path: 'feature-list',
+  //   loadChildren: () =>
+  //     import('./pages/feature-list/feature-list.module').then(
+  //       (m) => m.FeatureListModule
+  //     )
+  // },
+  // {
+  //   path: 'settings',
+  //   loadChildren: () =>
+  //     import('./pages/settings/settings.module').then(
+  //       (m) => m.SettingsModule
+  //     )
+  // },
+  // {
+  //   path: 'examples',
+  //   loadChildren: () =>
+  //     import('./pages/examples/examples.module').then(
+  //       (m) => m.ExamplesModule
+  //     )
+  // },
   {
     path: '**',
-    component: NotFoundComponent,
-  },
+    redirectTo: 'about'
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  // useHash supports github.io demo page, remove in your app
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      scrollPositionRestoration: 'enabled',
+      preloadingStrategy: PreloadAllModules,
+      relativeLinkResolution: 'legacy'
+    })
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

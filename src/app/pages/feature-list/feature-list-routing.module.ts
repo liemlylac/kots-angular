@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: FeatureListComponent,
-    data: { title: 'kots.menu.features' }
+    data: { title: 'menu.features' }
   }
 ];
 

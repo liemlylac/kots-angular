@@ -2,7 +2,7 @@
 
 @import '../../../../../styles-variables';
 
-@mixin kots-notifications-component-theme($theme) {
+@mixin notifications-component-theme($theme) {
   $accent: map-get($theme, accent);
   $warn: map-get($theme, warn);
 

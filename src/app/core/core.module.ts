@@ -8,17 +8,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { FormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { environment } from '../../environments/environment';
+import { MaterialModule } from '../shared/material.module';
 
 import { AppState, reducers, metaReducers, selectRouterState } from './core.state';
 import { AuthEffects } from './auth/auth.effects';
@@ -40,7 +34,6 @@ import {
   selectEffectiveTheme,
   selectSettingsStickyHeader
 } from './settings/settings.selectors';
-import { MatButtonModule } from '@angular/material/button';
 import { faCog, faBars, faRocket, faPowerOff, faUserCircle, faPlayCircle } from '@fortawesome/free-solid-svg-icons';
 import { faGithub, faMediumM, faTwitter, faInstagram, faYoutube, faFacebook } from '@fortawesome/free-brands-svg-icons';
 
@@ -75,25 +68,13 @@ export function httpLoaderFactory(http: HttpClient) {
     FormsModule,
 
     // material
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatButtonModule,
+    MaterialModule,
 
     // ngrx
     StoreModule.forRoot(reducers, { metaReducers }),
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AuthEffects, SettingsEffects, GoogleAnalyticsEffects]),
-    environment.production
-      ? []
-      : StoreDevtoolsModule.instrument({
-          name: 'Angular NgRx Material Starter'
-        }),
+    environment.production ? [] : StoreDevtoolsModule.instrument({ name: 'Kots' }),
 
     // 3rd party
     FontAwesomeModule,
@@ -114,17 +95,6 @@ export function httpLoaderFactory(http: HttpClient) {
   exports: [
     // angular
     FormsModule,
-
-    // material
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatMenuModule,
-    MatIconModule,
-    MatSelectModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatButtonModule,
 
     // 3rd party
     FontAwesomeModule,

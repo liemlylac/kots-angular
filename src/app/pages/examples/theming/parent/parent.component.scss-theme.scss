@@ -1,9 +1,9 @@
 @import '~@angular/material/theming';
 
-@mixin kots-parent-component-theme($theme) {
+@mixin parent-component-theme($theme) {
   $accent: map-get($theme, accent);
 
-  kots-parent {
+  parent {
     > .container {
       > .row {
         > .col-md-6 {

@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 
-@mixin kots-todos-container-component-theme($theme) {
+@mixin todos-container-component-theme($theme) {
   $accent: map-get($theme, accent);
 
   .todos-filter-menu-overlay {

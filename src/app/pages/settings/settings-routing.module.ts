@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: SettingsContainerComponent,
-    data: { title: 'kots.menu.settings' }
+    data: { title: 'menu.settings' }
   }
 ];
 

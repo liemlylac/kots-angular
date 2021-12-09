@@ -41,12 +41,12 @@ describe('TodosComponent', () => {
   const getTodoItem = () => fixture.debugElement.query(By.css('.todo-label'));
 
   const getAddTodoButton = async () => {
-    const buttons = await loader.getAllHarnesses(MatButtonHarness.with({ selector: 'kots-big-input-action button' }));
+    const buttons = await loader.getAllHarnesses(MatButtonHarness.with({ selector: 'big-input-action button' }));
     return buttons[0];
   };
 
   const getRemoveDoneTodosButton = async () => {
-    const buttons = await loader.getAllHarnesses(MatButtonHarness.with({ selector: 'kots-big-input-action button' }));
+    const buttons = await loader.getAllHarnesses(MatButtonHarness.with({ selector: 'big-input-action button' }));
     return buttons[1];
   };
 

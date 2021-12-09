@@ -19,37 +19,31 @@ import {
   actionSettingsChangeAnimationsPageDisabled,
   actionSettingsChangeLanguage
 } from '../core/settings/settings.actions';
+import { AppComponent } from '../app.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-page',
+  templateUrl: './page.component.html',
+  styleUrls: ['./page.component.scss'],
   animations: [routeAnimations]
 })
-export class AppComponent implements OnInit {
+export class PageComponent implements OnInit {
   isProd = env.production;
   envName = env.envName;
   version = env.versions.app;
   year = new Date().getFullYear();
   logo = require('../../assets/logo.png').default;
-  languages = ['en', 'de', 'sk', 'fr', 'es', 'pt-br', 'zh-cn', 'he'];
-  navigation = [
-    { link: 'about', label: 'kots.menu.about' },
-    { link: 'feature-list', label: 'kots.menu.features' },
-    { link: 'examples', label: 'kots.menu.examples' }
+  languages = ['en', 'vi'];
+  navigationSideMenu = [
+    { link: 'settings', label: 'menu.settings' },
+    { link: 'auth/logout', label: 'menu.logout' }
   ];
-  navigationSideMenu = [...this.navigation, { link: 'settings', label: 'kots.menu.settings' }];
 
   isAuthenticated$: Observable<boolean>;
   stickyHeader$: Observable<boolean>;
   language$: Observable<string>;
-  theme$: Observable<string>;
 
   constructor(private store: Store, private storageService: LocalStorageService) {}
-
-  private static isIEorEdgeOrSafari() {
-    return ['ie', 'edge', 'safari'].includes(browser().name);
-  }
 
   ngOnInit(): void {
     this.storageService.testLocalStorage();
@@ -64,7 +58,6 @@ export class AppComponent implements OnInit {
     this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
     this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
     this.language$ = this.store.pipe(select(selectSettingsLanguage));
-    this.theme$ = this.store.pipe(select(selectEffectiveTheme));
   }
 
   onLoginClick() {

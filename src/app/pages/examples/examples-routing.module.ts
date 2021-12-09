@@ -27,17 +27,17 @@ const routes: Routes = [
       {
         path: 'todos',
         component: TodosContainerComponent,
-        data: { title: 'kots.examples.menu.todos' }
+        data: { title: 'examples.menu.todos' }
       },
       {
         path: 'stock-market',
         component: StockMarketContainerComponent,
-        data: { title: 'kots.examples.menu.stocks' }
+        data: { title: 'examples.menu.stocks' }
       },
       {
         path: 'theming',
         component: ParentComponent,
-        data: { title: 'kots.examples.menu.theming' }
+        data: { title: 'examples.menu.theming' }
       },
       {
         path: 'crud',
@@ -47,33 +47,33 @@ const routes: Routes = [
       {
         path: 'crud/:id',
         component: CrudComponent,
-        data: { title: 'kots.examples.menu.crud' }
+        data: { title: 'examples.menu.crud' }
       },
       {
         path: 'simple-state-management',
         component: UserComponent,
-        data: { title: 'kots.examples.menu.simple-state-management' }
+        data: { title: 'examples.menu.simple-state-management' }
       },
       {
         path: 'form',
         component: FormComponent,
-        data: { title: 'kots.examples.menu.form' }
+        data: { title: 'examples.menu.form' }
       },
       {
         path: 'notifications',
         component: NotificationsComponent,
-        data: { title: 'kots.examples.menu.notifications' }
+        data: { title: 'examples.menu.notifications' }
       },
       {
         path: 'elements',
         component: ElementsComponent,
-        data: { title: 'kots.examples.menu.elements' }
+        data: { title: 'examples.menu.elements' }
       },
       {
         path: 'authenticated',
         component: AuthenticatedComponent,
         canActivate: [AuthGuardService],
-        data: { title: 'kots.examples.menu.auth' }
+        data: { title: 'examples.menu.auth' }
       }
     ]
   }

@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h1 rtl class="main-heading">{{ 'kots.examples.stocks.title' | translate }}</h1>
+      <h1 rtl class="main-heading">{{ 'examples.stocks.title' | translate }}</h1>
     </div>
   </div>
   <div class="row" [ngClass]="routeAnimationsElements" rtl>
@@ -9,13 +9,13 @@
       <div class="col-md-6 col-lg-3">
         <form autocomplete="false">
           <mat-form-field>
-            <input matInput [placeholder]="'kots.examples.stocks.symbol' | translate"
+            <input matInput [placeholder]="'examples.stocks.symbol' | translate"
                    [value]="stocks.symbol"
                    (keyup)="onSymbolChange($event.target.value)">
           </mat-form-field>
         </form>
         <p>
-          {{ 'kots.examples.stocks.description' | translate }} GOOGL, FB, AAPL, NVDA, AMZN,
+          {{ 'examples.stocks.description' | translate }} GOOGL, FB, AAPL, NVDA, AMZN,
           TWTR, SNAP, TSLA...
         </p>
         <br>
@@ -39,9 +39,9 @@
           <fa-icon icon="exclamation-triangle" size="3x"></fa-icon>
           <br><br>
           <span>
-            {{ 'kots.examples.stocks.error1' | translate }}
+            {{ 'examples.stocks.error1' | translate }}
             <span class="symbol">{{stocks.symbol}}</span>
-            {{ 'kots.examples.stocks.error2' | translate }}
+            {{ 'examples.stocks.error2' | translate }}
           </span>
         </p>
         <br>
@@ -50,15 +50,15 @@
     </ng-container>
     <div class="col-md-12 col-lg-4" [ngClass]="routeAnimationsElements">
       <p>
-        {{ 'kots.examples.stocks.text1' | translate }} <code>HTTP</code>
-        {{ 'kots.examples.stocks.text2' | translate }} <code>@ngrx/effects</code>
-        {{ 'kots.examples.stocks.text3' | translate }}
+        {{ 'examples.stocks.text1' | translate }} <code>HTTP</code>
+        {{ 'examples.stocks.text2' | translate }} <code>@ngrx/effects</code>
+        {{ 'examples.stocks.text3' | translate }}
       </p>
-      <p>{{ 'kots.examples.stocks.text4' | translate }}</p>
+      <p>{{ 'examples.stocks.text4' | translate }}</p>
       <p>
-        {{ 'kots.examples.stocks.text5' | translate }} <code>.switchMap</code>.
+        {{ 'examples.stocks.text5' | translate }} <code>.switchMap</code>.
       </p>
-      <p>{{ 'kots.examples.stocks.text6' | translate }}</p>
+      <p>{{ 'examples.stocks.text6' | translate }}</p>
     </div>
   </div>
 </div>

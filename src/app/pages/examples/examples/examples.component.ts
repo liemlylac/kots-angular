@@ -7,7 +7,7 @@ import { routeAnimations, selectIsAuthenticated } from '../../../core/core.modul
 import { State } from '../examples.state';
 
 @Component({
-  selector: 'kots-examples',
+  selector: 'examples',
   templateUrl: './examples.component.html',
   styleUrls: ['./examples.component.scss'],
   animations: [routeAnimations],
@@ -17,18 +17,18 @@ export class ExamplesComponent implements OnInit {
   isAuthenticated$: Observable<boolean>;
 
   examples = [
-    { link: 'todos', label: 'kots.examples.menu.todos' },
-    { link: 'stock-market', label: 'kots.examples.menu.stocks' },
-    { link: 'theming', label: 'kots.examples.menu.theming' },
-    { link: 'crud', label: 'kots.examples.menu.crud' },
+    { link: 'todos', label: 'examples.menu.todos' },
+    { link: 'stock-market', label: 'examples.menu.stocks' },
+    { link: 'theming', label: 'examples.menu.theming' },
+    { link: 'crud', label: 'examples.menu.crud' },
     {
       link: 'simple-state-management',
-      label: 'kots.examples.menu.simple-state-management'
+      label: 'examples.menu.simple-state-management'
     },
-    { link: 'form', label: 'kots.examples.menu.form' },
-    { link: 'notifications', label: 'kots.examples.menu.notifications' },
-    { link: 'elements', label: 'kots.examples.menu.elements' },
-    { link: 'authenticated', label: 'kots.examples.menu.auth', auth: true }
+    { link: 'form', label: 'examples.menu.form' },
+    { link: 'notifications', label: 'examples.menu.notifications' },
+    { link: 'elements', label: 'examples.menu.elements' },
+    { link: 'authenticated', label: 'examples.menu.auth', auth: true }
   ];
 
   constructor(private store: Store<State>) {}

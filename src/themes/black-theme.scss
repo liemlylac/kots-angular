@@ -1,5 +1,5 @@
-$kots-black-primary: mat-palette($mat-grey, 700, 300, 900);
-$kots-black-accent: mat-palette($mat-blue-grey, 400);
-$kots-black-warn: mat-palette($mat-red, 500);
+$black-primary: mat-palette($mat-grey, 700, 300, 900);
+$black-accent: mat-palette($mat-blue-grey, 400);
+$black-warn: mat-palette($mat-red, 500);
 
-$kots-black-theme: mat-dark-theme($kots-black-primary, $kots-black-accent, $kots-black-warn);
+$black-theme: mat-dark-theme($black-primary, $black-accent, $black-warn);

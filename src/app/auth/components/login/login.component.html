@@ -1,0 +1,40 @@
+<form [formGroup]='form' (ngSubmit)='onSubmit()'>
+  <div class='row justify-content-center'>
+    <div class='col-md-6'>
+      <mat-card id='card' style='text-align: center;'>
+        <mat-card-title>
+          <h1 class='main-heading text-center'>{{ 'auth.form.login' | translate }}</h1>
+        </mat-card-title>
+
+        <mat-card-content>
+          <div class='row'>
+            <mat-form-field appearance='outline' class='col'>
+              <mat-label>{{ 'auth.form.username' | translate }}</mat-label>
+              <input matInput type='text' formControlName='username' name='username'>
+              <mat-error *ngIf="form.get('username').invalid">
+                {{ 'auth.form.username' | translate }}
+                {{ 'auth.form.error.required' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class='row'>
+            <mat-form-field appearance='outline' class='col'>
+              <mat-label>{{ 'auth.form.password' | translate }}</mat-label>
+              <input matInput type='password' formControlName='password' name='password'>
+              <mat-error *ngIf="form.get('password').invalid">
+                {{ 'auth.form.password' | translate }}
+                {{ 'auth.form.error.required' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <button mat-raised-button color='primary'>{{ 'auth.form.login' | translate }}</button>
+          <button mat-raised-button color='secondary'>{{ 'auth.form.register' | translate }}</button>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+
+</form>
+

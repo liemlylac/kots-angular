@@ -26,9 +26,9 @@ describe('FormComponent', () => {
   const getInput = (fieldName: string) =>
     loader.getHarness(MatInputHarness.with({ selector: `[formControlName="${fieldName}"]` }));
 
-  const getSaveButton = () => loader.getHarness(MatButtonHarness.with({ text: 'kots.examples.form.save' }));
+  const getSaveButton = () => loader.getHarness(MatButtonHarness.with({ text: 'examples.form.save' }));
 
-  const getResetButton = async () => loader.getHarness(MatButtonHarness.with({ text: 'kots.examples.form.reset' }));
+  const getResetButton = async () => loader.getHarness(MatButtonHarness.with({ text: 'examples.form.reset' }));
 
   beforeEach(async () => {
     TestBed.configureTestingModule({

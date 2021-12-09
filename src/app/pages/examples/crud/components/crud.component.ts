@@ -13,7 +13,7 @@ import { actionBooksDeleteOne, actionBooksUpsertOne } from '../books.actions';
 import { selectSelectedBook, selectAllBooks } from '../books.selectors';
 
 @Component({
-  selector: 'kots-crud',
+  selector: 'crud',
   templateUrl: './crud.component.html',
   styleUrls: ['./crud.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

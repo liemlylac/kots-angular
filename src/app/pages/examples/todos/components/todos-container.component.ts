@@ -13,7 +13,7 @@ import { Todo, TodosFilter } from '../todos.model';
 import { selectTodos, selectRemoveDoneTodosDisabled } from '../todos.selectors';
 
 @Component({
-  selector: 'kots-todos',
+  selector: 'todos',
   templateUrl: './todos-container.component.html',
   styleUrls: ['./todos-container.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -52,7 +52,7 @@ export class TodosContainerComponent implements OnInit {
 
   onAddTodo() {
     this.store.dispatch(todoActions.actionTodosAdd(this.newTodo));
-    const addedMessage = this.translateService.instant('kots.examples.todos.added.notification', {
+    const addedMessage = this.translateService.instant('examples.todos.added.notification', {
       name: this.newTodo
     });
     this.notificationService.info(addedMessage);
@@ -62,8 +62,8 @@ export class TodosContainerComponent implements OnInit {
   onToggleTodo(todo: Todo) {
     this.store.dispatch(todoActions.actionTodosToggle({ id: todo.id }));
     const newStatus = this.translateService.instant(`kots.examples.todos.filter.${todo.done ? 'active' : 'done'}`);
-    const undo = this.translateService.instant('kots.examples.todos.undo');
-    const toggledMessage = this.translateService.instant('kots.examples.todos.toggle.notification', {
+    const undo = this.translateService.instant('examples.todos.undo');
+    const toggledMessage = this.translateService.instant('examples.todos.toggle.notification', {
       name: todo.name
     });
 
@@ -79,13 +79,13 @@ export class TodosContainerComponent implements OnInit {
 
   onRemoveDoneTodos() {
     this.store.dispatch(todoActions.actionTodosRemoveDone());
-    const removedMessage = this.translateService.instant('kots.examples.todos.remove.notification');
+    const removedMessage = this.translateService.instant('examples.todos.remove.notification');
     this.notificationService.info(removedMessage);
   }
 
   onFilterTodos(filter: TodosFilter) {
     this.store.dispatch(todoActions.actionTodosFilter({ filter }));
-    const filterToMessage = this.translateService.instant('kots.examples.todos.filter.notification');
+    const filterToMessage = this.translateService.instant('examples.todos.filter.notification');
     const filterMessage = this.translateService.instant(`kots.examples.todos.filter.${filter.toLowerCase()}`);
     this.notificationService.info(`${filterToMessage} ${filterMessage}`);
   }

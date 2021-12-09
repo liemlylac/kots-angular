@@ -3,7 +3,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../../core/core.module';
 
 @Component({
-  selector: 'kots-parent',
+  selector: 'parent',
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

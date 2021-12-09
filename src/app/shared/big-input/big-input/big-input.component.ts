@@ -1,7 +1,7 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
-  selector: 'kots-big-input',
+  selector: 'big-input',
   templateUrl: './big-input.component.html',
   styleUrls: ['./big-input.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

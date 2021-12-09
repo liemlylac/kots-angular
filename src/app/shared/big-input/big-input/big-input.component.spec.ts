@@ -5,9 +5,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from '../../shared.module';
 
 @Component({
-  selector: 'kots-host-for-test',
+  selector: 'host-for-test',
   template: `
-    <kots-big-input
+    <big-input
       placeholder="I am going to do..."
       [value]="newValue"
       (keyup)="onKeyEvent($event)"

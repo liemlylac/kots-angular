@@ -13,28 +13,28 @@ export const features: Feature[] = [
   {
     name: 'Angular',
     version: env.versions.angular,
-    description: 'kots.features.angular',
+    description: 'features.angular',
     github: 'https://github.com/angular/angular',
     documentation: 'https://angular.io/docs/ts/latest/'
   },
   {
     name: 'Angular Material',
     version: env.versions.material,
-    description: 'kots.features.angular-material',
+    description: 'features.angular-material',
     github: 'https://github.com/angular/material2/',
     documentation: 'https://material.angular.io/'
   },
   {
     name: 'Angular Cli',
     version: env.versions.angularCli,
-    description: 'kots.features.angular-cli',
+    description: 'features.angular-cli',
     github: 'https://github.com/angular/angular-cli',
     documentation: 'https://cli.angular.io/'
   },
   {
     name: 'NgRx',
     version: env.versions.ngrx,
-    description: 'kots.features.ngrx',
+    description: 'features.ngrx',
     github: 'https://github.com/ngrx/platform',
     documentation: 'http://ngrx.github.io/',
     medium: 'https://medium.com/@tomastrajan/object-assign-vs-object-spread-in-angular-ngrx-reducers-3d62ecb4a4b0'
@@ -42,7 +42,7 @@ export const features: Feature[] = [
   {
     name: 'RxJS',
     version: env.versions.rxjs,
-    description: 'kots.features.rxjs',
+    description: 'features.rxjs',
     github: 'https://github.com/ReactiveX/RxJS',
     documentation: 'http://reactivex.io/rxjs/',
     medium:
@@ -51,7 +51,7 @@ export const features: Feature[] = [
   {
     name: 'Bootstrap',
     version: env.versions.bootstrap,
-    description: 'kots.features.bootstrap',
+    description: 'features.bootstrap',
     github: 'https://github.com/twbs/bootstrap',
     documentation: 'https://getbootstrap.com/docs/4.4/getting-started/introduction/',
     medium:
@@ -60,46 +60,46 @@ export const features: Feature[] = [
   {
     name: 'Typescript',
     version: env.versions.typescript,
-    description: 'kots.features.typescript',
+    description: 'features.typescript',
     github: 'https://github.com/Microsoft/TypeScript',
     documentation: 'https://www.typescriptlang.org/docs/home.html'
   },
   {
     name: 'I18n',
     version: env.versions.ngxtranslate,
-    description: 'kots.features.ngxtranslate',
+    description: 'features.ngxtranslate',
     github: 'https://github.com/ngx-translate/core',
     documentation: 'http://www.ngx-translate.com/'
   },
   {
     name: 'Font Awesome 5',
     version: env.versions.fontAwesome,
-    description: 'kots.features.fontawesome',
+    description: 'features.fontawesome',
     github: 'https://github.com/FortAwesome/Font-Awesome',
     documentation: 'https://fontawesome.com/icons'
   },
   {
     name: 'Cypress',
     version: env.versions.cypress,
-    description: 'kots.features.cypress',
+    description: 'features.cypress',
     github: 'https://github.com/cypress-io/cypress',
     documentation: 'https://www.cypress.io/'
   },
   {
-    name: 'kots.features.themes.title',
-    description: 'kots.features.themes.description',
+    name: 'features.themes.title',
+    description: 'features.themes.description',
     documentation: 'https://material.angular.io/guide/theming',
     medium: 'https://medium.com/@tomastrajan/the-complete-guide-to-angular-material-themes-4d165a9d24d1'
   },
   {
-    name: 'kots.features.lazyloading.title',
-    description: 'kots.features.lazyloading.description',
+    name: 'features.lazyloading.title',
+    description: 'features.lazyloading.description',
     documentation: 'https://angular.io/guide/router#lazy-loading-route-configuration'
   },
   {
     name: 'Eslint',
     version: env.versions.eslint,
-    description: 'kots.features.eslint',
+    description: 'features.eslint',
     github: 'https://github.com/eslint/eslint',
     documentation: 'https://eslint.org/docs/user-guide/getting-started'
   }

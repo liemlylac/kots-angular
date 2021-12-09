@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -8,33 +9,20 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'dashboard',
-    loadChildren: () => import('./pages/dashboard/dashboard.module').then((m) => m.DashboardModule)
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule)
   },
-  // {
-  //   path: 'feature-list',
-  //   loadChildren: () =>
-  //     import('./pages/feature-list/feature-list.module').then(
-  //       (m) => m.FeatureListModule
-  //     )
-  // },
-  // {
-  //   path: 'settings',
-  //   loadChildren: () =>
-  //     import('./pages/settings/settings.module').then(
-  //       (m) => m.SettingsModule
-  //     )
-  // },
-  // {
-  //   path: 'examples',
-  //   loadChildren: () =>
-  //     import('./pages/examples/examples.module').then(
-  //       (m) => m.ExamplesModule
-  //     )
-  // },
+  {
+    path: '',
+    loadChildren: () => import('./pages/page.module').then((m) => m.PageModule)
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent
+  },
   {
     path: '**',
-    redirectTo: 'about'
+    redirectTo: 'not-found'
   }
 ];
 
@@ -42,7 +30,7 @@ const routes: Routes = [
   // useHash supports github.io demo page, remove in your app
   imports: [
     RouterModule.forRoot(routes, {
-      useHash: true,
+      useHash: false,
       scrollPositionRestoration: 'enabled',
       preloadingStrategy: PreloadAllModules,
       relativeLinkResolution: 'legacy'

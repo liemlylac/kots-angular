@@ -1,5 +1,5 @@
-$kots-nature-primary: mat-palette($mat-brown, 700, 300, 900);
-$kots-nature-accent: mat-palette($mat-deep-purple, 300);
-$kots-nature-warn: mat-palette($mat-red, 600);
+$nature-primary: mat-palette($mat-brown, 700, 300, 900);
+$nature-accent: mat-palette($mat-deep-purple, 300);
+$nature-warn: mat-palette($mat-red, 600);
 
-$kots-nature-theme: mat-light-theme($kots-nature-primary, $kots-nature-accent, $kots-nature-warn);
+$nature-theme: mat-light-theme($nature-primary, $nature-accent, $nature-warn);

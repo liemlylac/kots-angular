@@ -38,7 +38,9 @@ export class NotificationService {
   error(message: string) {
     this.show(message, {
       duration: 3000,
-      panelClass: 'error-notification-overlay'
+      panelClass: 'error-notification-overlay',
+      horizontalPosition: 'right',
+      verticalPosition: 'bottom'
     });
   }
 

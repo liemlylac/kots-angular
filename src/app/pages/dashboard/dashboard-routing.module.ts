@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    data: { title: 'kots.menu.about' }
+    data: { title: 'menu.about' }
   }
 ];
 
